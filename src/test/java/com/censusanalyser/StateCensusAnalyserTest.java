@@ -36,5 +36,23 @@ public class StateCensusAnalyserTest {
 		}
 	}
 	
+	@Test
+	public void givenStateCensus_WrongFileType_ShouldThrowException()  {
+	   try {
+		stateCensusAnalyser.loadIndiaCensusData(CENSUS_WRONG_TYPE_FILE_PATH);
+	   }catch(CensusAnalyserException e) {
+		   Assert.assertEquals(CensusAnalyserException.ExceptionType.INCORRECT_FILE_TYPE, e.type);
+	   }
+	}
 	
+	
+	
+	 @Test
+		public void givenStateCensus_WrongDelimiter_ShouldThrowException()  {
+		   try {
+			stateCensusAnalyser.loadIndiaCensusData(CENSUS_WRONG_DELIMITER_FILE_PATH);
+		   }catch(CensusAnalyserException e) {
+			   Assert.assertEquals(CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE, e.type);
+		   }
+		}
 }
