@@ -44,13 +44,18 @@ public class StateCensusAnalyserTest {
 		   Assert.assertEquals(CensusAnalyserException.ExceptionType.INCORRECT_FILE_TYPE, e.type);
 	   }
 	}
-	
-	
-	
 	 @Test
 		public void givenStateCensus_WrongDelimiter_ShouldThrowException()  {
 		   try {
 			stateCensusAnalyser.loadIndiaCensusData(CENSUS_WRONG_DELIMITER_FILE_PATH);
+		   }catch(CensusAnalyserException e) {
+			   Assert.assertEquals(CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE, e.type);
+		   }
+		}
+	 @Test
+		public void givenStateCensus_WrongHeader_ShouldThrowException()  {
+		   try {
+			stateCensusAnalyser.loadIndiaCensusData(CENSUS_WRONGHEADER_FILE_PATH);
 		   }catch(CensusAnalyserException e) {
 			   Assert.assertEquals(CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE, e.type);
 		   }
