@@ -27,5 +27,14 @@ public class StateCensusAnalyserTest {
 		Assert.assertEquals(29, numOfEntries);
 	}
 
+	@Test
+	public void givenStateCensus_WrongCSVFile_ShouldThrowException() {
+		try {
+			stateCensusAnalyser.loadIndiaCensusData(STATE_CENSUS_WRONG_FILE_PATH);
+		} catch (CensusAnalyserException e) {
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+		}
+	}
+	
 	
 }
