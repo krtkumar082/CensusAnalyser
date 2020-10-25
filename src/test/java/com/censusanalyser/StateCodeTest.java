@@ -8,7 +8,7 @@ public class StateCodeTest {
 	private StateCensusAnalyser stateCensusAnalyser;
 	public static final String STATE_CODE_FILE_PATH = "./IndiaStateCode.csv";
 	private static final String STATE_CODE_WRONG_FILE_PATH = "./src/test/resources/IndiaStateCodeData.csv";
-
+	private static final String CODE_WRONG_TYPE_FILE_PATH = "./StateCode.txt";
 	@Before
 	public void initialize() {
 		stateCensusAnalyser = new StateCensusAnalyser();
@@ -28,5 +28,14 @@ public class StateCodeTest {
 		} catch (CensusAnalyserException e) {
 			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
 		}
+	}
+	
+	@Test
+	public void givenStateCode_WrongFileType_ShouldThrowException()  {
+	   try {
+		stateCensusAnalyser.loadIndiaStateCodeData(CODE_WRONG_TYPE_FILE_PATH);
+	   }catch(CensusAnalyserException e) {
+		   Assert.assertEquals(CensusAnalyserException.ExceptionType.INCORRECT_FILE_TYPE, e.type);
+	   }
 	}
 }
