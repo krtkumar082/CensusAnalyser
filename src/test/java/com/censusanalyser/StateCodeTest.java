@@ -10,6 +10,7 @@ public class StateCodeTest {
 	private static final String STATE_CODE_WRONG_FILE_PATH = "./src/test/resources/IndiaStateCodeData.csv";
 	private static final String CODE_WRONG_TYPE_FILE_PATH = "./StateCode.txt";
 	private static final String CODE_WRONG_DELIMITER_FILE_PATH = "./StateCodeDelimiter.csv";
+	private static final String CODE_WRONGHEADER_FILE_PATH = "./IndiaStateCensusData.csv";
 	@Before
 	public void initialize() {
 		stateCensusAnalyser = new StateCensusAnalyser();
@@ -44,6 +45,15 @@ public class StateCodeTest {
 	public void givenStateCode_WrongDelimiter_ShouldThrowException()  {
 	   try {
 		stateCensusAnalyser.loadIndiaStateCodeData(CODE_WRONG_DELIMITER_FILE_PATH);
+	   }catch(CensusAnalyserException e) {
+		   Assert.assertEquals(CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE, e.type);
+	   }
+	}
+	
+	@Test
+	public void givenStateCode_WrongHeader_ShouldThrowException()  {
+	   try {
+		stateCensusAnalyser.loadIndiaStateCodeData(CODE_WRONGHEADER_FILE_PATH);
 	   }catch(CensusAnalyserException e) {
 		   Assert.assertEquals(CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE, e.type);
 	   }
