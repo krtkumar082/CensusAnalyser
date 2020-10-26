@@ -1,5 +1,12 @@
 package com.censusanalyser;
 
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+
+
 public class StateCodeTest {
 	private StateCensusAnalyser stateCensusAnalyser;
 	public static final String STATE_CODE_FILE_PATH = "./IndiaStateCode.csv";
